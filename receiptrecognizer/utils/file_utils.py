@@ -35,7 +35,7 @@ class FileHandler:
         return imgs, masks, xmls
 
     @staticmethod
-    def saveResult(img_file, img, boxes, dirname='./result/', verticals=None, texts=None):
+    def saveResult(img_file, img, boxes, dirname='../test_instances/results/', verticals=None, texts=None):
             """ save text detection result one by one
             Args:
                 img_file (str): image file name

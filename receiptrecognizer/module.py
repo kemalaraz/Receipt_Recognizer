@@ -5,11 +5,12 @@ import torch
 import numpy as np
 from torch import nn
 
+from utils import FileHandler
 from utils import copyStateDict
 from models import Craft, RefineNet
 from downloaders import download_model
-from utils.image_utils import loadImage, cvt2HeatmapImg
 from transforms import ImageTransform, PostTransform
+from utils.image_utils import loadImage, cvt2HeatmapImg
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger("receiptrecognizer.module")
@@ -140,9 +141,8 @@ if __name__ == "__main__":
         filename, file_ext = os.path.splitext(os.path.basename(image_path))
         cv2.imshow("test", heatmap)
         cv2.waitKey(0)
-        exit(0)
         # mask_file = result_folder + "/res_" + filename + '_mask.jpg'
         # cv2.imwrite(mask_file, heatmap)
 
-        # file_utils.saveResult(image_path, image[:,:,::-1], polys, dirname=result_folder)
+        FileHandler.saveResult(image_path, image[:,:,::-1], polys)
 
