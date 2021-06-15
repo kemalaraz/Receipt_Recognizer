@@ -227,7 +227,7 @@ class PostTransform:
 
     @staticmethod
     def getDetBoxes(textmap, linkmap, text_threshold, link_threshold, low_text, poly=False):
-        boxes, labels, mapper = getDetBoxes_core(textmap, linkmap, text_threshold, link_threshold, low_text)
+        boxes, labels, mapper = PostTransform.getDetBoxes_core(textmap, linkmap, text_threshold, link_threshold, low_text)
 
         if poly:
             polys = getPoly_core(boxes, labels, mapper, linkmap)

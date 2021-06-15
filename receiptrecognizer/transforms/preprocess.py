@@ -5,11 +5,9 @@ import numpy as np
 class ImageTransform:
     """A general class in order to group together image transformations"""
     ### mean and std are calculated according to the CRAFT paper https://arxiv.org/pdf/1904.01941.pdf ###
-    __mean__ = (0.485, 0.456, 0.406)
-    __std__ = (0.229, 0.224, 0.225)
 
     @staticmethod
-    def normalizeMeanVariance(in_img, mean=ImageTransform.__mean__, variance=ImageTransform.__std__):
+    def normalizeMeanVariance(in_img, mean=(0.485, 0.456, 0.406), variance=(0.229, 0.224, 0.225)):
         # should be RGB order
         img = in_img.copy().astype(np.float32)
 
@@ -18,7 +16,7 @@ class ImageTransform:
         return img
 
     @staticmethod
-    def denormalizeMeanVariance(in_img, mean=ImageTransform.__mean__, variance=ImageTransform.__std__):
+    def denormalizeMeanVariance(in_img, mean=(0.485, 0.456, 0.406), variance=(0.229, 0.224, 0.225)):
         # should be RGB order
         img = in_img.copy()
         img *= variance

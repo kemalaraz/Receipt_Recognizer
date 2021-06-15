@@ -18,5 +18,5 @@ def copyStateDict(state_dict:Dict) -> Dict:
     new_state_dict = OrderedDict()
     for k, v in state_dict.items():
         name = ".".join(k.split(".")[start_idx:])
-        new_state_dict[name] = v
+        new_state_dict[name.replace("basenet", "backbone")] = v
     return new_state_dict
