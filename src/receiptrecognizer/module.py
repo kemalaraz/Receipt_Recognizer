@@ -132,6 +132,7 @@ if __name__ == "__main__":
     import cv2
     model = ReceiptRecognizer.from_pretrained("craft_mlt_25k.pth")
     test_path = "../test_instances/raw_images"
+    results_path = "../test_instances/results"
     for k, image_path in enumerate(os.listdir(test_path)):
         image_path = os.path.join(test_path, image_path)
         image = loadImage(image_path)
@@ -141,8 +142,7 @@ if __name__ == "__main__":
         filename, file_ext = os.path.splitext(os.path.basename(image_path))
         cv2.imshow("test", heatmap)
         cv2.waitKey(0)
-        # mask_file = result_folder + "/res_" + filename + '_mask.jpg'
-        # cv2.imwrite(mask_file, heatmap)
+        mask_file = results_path + "/res_" + filename + '_mask.jpg'
+        cv2.imwrite(mask_file, heatmap)
 
-        FileHandler.saveResult(image_path, image[:,:,::-1], polys)
-
+        FileHandler.saveResult(image_path, image[:,:,::-1], bboxes)

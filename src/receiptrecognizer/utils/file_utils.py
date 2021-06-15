@@ -77,5 +77,5 @@ class FileHandler:
                         cv2.putText(img, "{}".format(texts[i]), tuple(poly[0]), font, font_scale, (0, 255, 255), thickness=1)
 
             # Save result image
-            cv2.imwrite(res_img_file, img)
-
+            cv2.imshow(res_img_file, img)
+            cv2.waitKey(0)
