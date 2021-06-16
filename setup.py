@@ -6,12 +6,12 @@ with open("README.md", "r") as foo:
 
 # load requirements
 with open("requirements.txt") as foo:
-    required = foo.read().splitlines()
+    requirements = foo.read().splitlines()
 
 setup(
     # package name `pip install receiptrecognizer`
     name="receiptrecognizer",
-    version="0.0.2",
+    version="0.0.4b0",
     author="karaz",
     author_email="kemalaraz91@gmail.com",
     # small description
@@ -31,5 +31,5 @@ setup(
         "Operating System :: OS Independent",
     ],
     python_requires='<3.8',
-    install_requires=required,
+    install_requires=requirements,
 )
