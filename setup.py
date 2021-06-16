@@ -11,7 +11,7 @@ with open("requirements.txt") as foo:
 setup(
     # package name `pip install receiptrecognizer`
     name="receiptrecognizer",
-    version="0.0.4b0",
+    version="0.0.5.1",
     author="karaz",
     author_email="kemalaraz91@gmail.com",
     # small description

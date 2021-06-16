@@ -1,5 +1,6 @@
 import os
 import re
+import cv2
 import logging
 from typing import List
 
@@ -9,14 +10,14 @@ from torch import nn
 import torch.utils.data
 import torch.nn.functional as F
 
-from utils import FileHandler
-from utils import ImageUtils
-from utils import copyStateDict
-from downloaders import download_model
-from datasets import AlignCollate, RawDataset
-from analyzer import Metrics, ImageManipulate
-from models import Craft, RefineNet, Tesseract, ReNBAtt
-from transforms import ImageTransform, PostTransform, AttnLabelConverter, CTCLabelConverter
+from .utils import FileHandler
+from .utils import ImageUtils
+from .utils import copyStateDict
+from .downloaders import download_model
+from .datasets import AlignCollate, RawDataset
+from .analyzer import Metrics, ImageManipulate
+from .models import Craft, RefineNet, Tesseract, ReNBAtt
+from .transforms import ImageTransform, PostTransform, AttnLabelConverter, CTCLabelConverter
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger("receiptrecognizer.module")
@@ -255,7 +256,7 @@ class ReceiptRecognizer(nn.Module):
         return final_result
 
 if __name__ == "__main__":
-    import cv2
+
     model = ReceiptRecognizer.from_pretrained("craft_mlt_25k.pth")
     model.detector.eval()
     test_path = "../test_instances/raw_images"

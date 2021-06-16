@@ -1,4 +1,6 @@
+tqdm
 numpy
+seaborn
 natsort
 imutils
 shapely
@@ -8,4 +10,10 @@ scikit-image
 torch==1.5.1
 torchvision
 opencv-python
+gensim==3.8.3
+seqeval==1.2.2
+torchtext==0.6.0
+tensorboard==2.4.1
+transformers==4.3.3
+sentencepiece==0.1.95
 googledrivedownloader==0.4
