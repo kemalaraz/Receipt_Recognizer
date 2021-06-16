@@ -2,7 +2,10 @@ __all__ = ["FileHandler"]
 
 import os
 import cv2
+import csv
+import json
 import numpy as np
+from typing import Dict
 
 def list_files(in_path):
     img_files = []
@@ -79,3 +82,38 @@ class FileHandler:
             # Save result image
             cv2.imshow(res_img_file, img)
             cv2.waitKey(0)
+
+    @staticmethod
+    def load_gt(*args) -> Dict:
+        """
+        Loads ground truth bounding boxes for images depending on its extention.
+
+        CSV FILE -> business_name,274,124,166,32,1003-receipt.jpg,750,1000
+
+        Args:
+            path (str): Path to the file
+
+        Returns:                                                                                    X ,  Y
+            Dict: {"image_name1":{"tag1":[np.array1, np.array2, ...], "tag2": [...] ... , "size": (int, int)}, ...}
+        """
+        # TODO: Add support for other formats such as YOLO, VOC XML etc.
+        for path in args:
+            gt_dict = {}
+            if os.path.splitext(path)[-1] == ".csv":
+                with open(path, "r") as file:
+                    reader = csv.reader(file)
+                    for e, row in enumerate(reader):
+                        if len(row) > 8:
+                            print(row)
+                        image_name = os.path.splitext(row[-3])[0]
+                        if image_name not in gt_dict.keys():
+                            gt_dict[image_name] = {row[0]: [np.array([int(elem) for elem in row[1:-3]]).reshape(-1, 2)],
+                                                                        "size": (int(row[-2]), int(row[-1]))}
+                        else:
+                            if row[0] in gt_dict[image_name].keys():
+                                gt_dict[image_name][row[0]].append(np.array([int(elem) for elem in row[1:-3]]).reshape(-1, 2))
+                            else:
+                                gt_dict[image_name][row[0]] = [np.array([int(elem) for elem in row[1:-3]]).reshape(-1, 2)]
+            if os.path.splitext(path)[-1] == ".json":
+                pass
+        return gt_dict
