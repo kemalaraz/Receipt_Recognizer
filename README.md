@@ -1,6 +1,8 @@
 # Receipt_Recognizer
 A library for detecting restaurant name, date and overall bill from a given receipt.
 
+# Installation
+
 ## For OCR Tesseract to work
 ### On Linux
 sudo apt-get update
@@ -11,3 +13,11 @@ sudo apt-get install libtesseract-dev
 brew install tesseract
 ### On Windows
 download binary from https://github.com/UB-Mannheim/tesseract/wiki. then add pytesseract.pytesseract.tesseract_cmd = 'C:\Program Files (x86)\Tesseract-OCR\tesseract.exe' to your script.
+
+## Install ReceiptRecognizer
+```
+pip install receiptrecognizer
+```
+
+## How to use it
+Follow the instructions on how_to jupyter notebook file to use it.
