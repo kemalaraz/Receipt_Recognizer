@@ -4,3 +4,4 @@ dist/
 receiptrecognizer.egg-info/
 build/
 log_demo_result.txt
+.ipynb_checkpoints
